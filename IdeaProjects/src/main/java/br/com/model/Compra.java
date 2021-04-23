@@ -7,9 +7,9 @@ public class Compra {
 
     @org.springframework.data.annotation.Id
     private String _id;
-    private String IDFilme;
+    private Filme Filme;
     private String NomeF;
-    private String IDCliente;
+    private Client Client;
     private String NomeC;
 
 
@@ -21,12 +21,20 @@ public class Compra {
         this._id = _id;
     }
 
-    public String getIDFilme() {
-        return IDFilme;
+    public br.com.model.Filme getFilme() {
+        return Filme;
     }
 
-    public void setIDFilme(String IDFilme) {
-        this.IDFilme = IDFilme;
+    public void setFilme(br.com.model.Filme filme) {
+        Filme = filme;
+    }
+
+    public br.com.model.Client getClient() {
+        return Client;
+    }
+
+    public void setClient(br.com.model.Client client) {
+        Client = client;
     }
 
     public String getNomeF() {
@@ -37,13 +45,7 @@ public class Compra {
         NomeF = nomeF;
     }
 
-    public String getIDCliente() {
-        return IDCliente;
-    }
 
-    public void setIDCliente(String IDCliente) {
-        this.IDCliente = IDCliente;
-    }
 
     public String getNomeC() {
         return NomeC;
