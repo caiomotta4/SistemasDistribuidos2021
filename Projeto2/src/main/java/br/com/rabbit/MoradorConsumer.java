@@ -14,8 +14,12 @@ public class MoradorConsumer {
     private MoradorService moradorService;
 
     @RabbitListener(queues = {"${queue.morador.name}"})
-    public void receive (@Payload Morador morador){
-        System.out.println("Id: "+ morador.get_id() + "\nNome: " + morador.getName());
-        moradorService.save(morador);
+    public void receive (@Payload Morador Morador){
+        System.out.println("Id: "+ Morador.get_id() + "\nNome: " + Morador.getName() +
+                "\nIdade: " + Morador.getIdade() + "\nCPF: " + Morador.getCpf() +
+                "\nNumero Bloco: " + Morador.getNumero_bloco() +
+                "\nNumero Apartamento: " + Morador.getNumero_apartamento());
+
+        moradorService.save(Morador);
     }
 }

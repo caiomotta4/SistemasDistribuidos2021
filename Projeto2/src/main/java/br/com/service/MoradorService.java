@@ -1,11 +1,13 @@
 package br.com.service;
 
 import br.com.model.Morador;
+import br.com.rabbit.MoradorProducer;
 import br.com.repository.MoradorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class MoradorService {
@@ -13,15 +15,30 @@ public class MoradorService {
     @Autowired
     private MoradorRepository moradorRepository;
 
-    public List<Morador> findAll(){
+    @Autowired
+    private MoradorProducer moradorProducer;
+
+    public void sendMoradorRabbit(Morador Morador){
+        moradorProducer.send(Morador);
+    }
+
+    public void save(Morador Morador){
+        moradorRepository.save(Morador);
+    }
+
+    public List<Morador> findAll (){
         return moradorRepository.findAll();
     }
 
-    public void save(Morador morador){
-        moradorRepository.save(morador);
+    public Optional<Morador> findById(String id){
+        return moradorRepository.findById(id);
     }
 
-    public Morador findById(String id){
-        return moradorRepository.findById(id).get();
+    public void delete(String id){
+        moradorRepository.deleteById(id);
+    }
+
+    public void deleteAll(){
+        moradorRepository.deleteAll();
     }
 }
